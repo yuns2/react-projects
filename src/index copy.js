@@ -1,16 +1,7 @@
-function MainPage(props) {
-  const [showWarning, setShowWarning] = useState(false);
+ReactDOM.render(<input value="hi" />, rootNode)
 
-  const handleToggleClick = () => {
-    setShowWarning((prevShowWarning) => !prevShowWarning);
-  }
+// 값을 바꿀수 없는 입력 불가상태
 
-  return(
-    <div>
-        <WarningBanner warning={showWarning}/>
-        <button onClick={handleToggleClick}>
-          {showWarning ? "감추기" : "보이기"}
-        </button>
-    </div>
-  )
-}
+setTimeout(function() {
+  ReactDOM.render(<input value={null} />, rootNode)
+}, 1000)
