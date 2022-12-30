@@ -1,7 +1,35 @@
-ReactDOM.render(<input value="hi" />, rootNode)
+function Calculator(props) {
+  const [temperature, setTemperature] = useState("");
+  const [scale, setScale] = useState("c");
+  
+  const handleCelsiusChange = (temperature) => {
+    setTemperature(temperature);
+    setScale('c');
+  }
 
-// 값을 바꿀수 없는 입력 불가상태
+  const handleFahrenheitChange = (temperature) => {
+    setTemperature(temperature);
+    setScale('f');
+  }
 
-setTimeout(function() {
-  ReactDOM.render(<input value={null} />, rootNode)
-}, 1000)
+  const celsius = scale === 'f' ? tryConvert(temperature, toCelsius) :  temperature;
+  const fahrenheit = scale === 'c' ? tryConvert(temperature, toFahrenheit) :  temperature;
+
+  return (
+    <div>
+      <TemperatureInput 
+        scale="c"
+        temperature={celsius}
+        onTemperatureChange={handleCelsiusChange}
+      />
+      <TemperatureInput 
+        scale="f"
+        temperature={fahrenheit}
+        onTemperatureChange={handleFahrenheitChange}
+      />
+      <BoilingVerdict 
+        celsius={parseFloat(celsius)}
+      />
+    </div>
+  )
+}
