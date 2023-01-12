@@ -1,35 +1,22 @@
-function Calculator(props) {
-  const [temperature, setTemperature] = useState("");
-  const [scale, setScale] = useState("c");
-  
-  const handleCelsiusChange = (temperature) => {
-    setTemperature(temperature);
-    setScale('c');
-  }
+import React from "react";
+import styled from 'styled-components';
 
-  const handleFahrenheitChange = (temperature) => {
-    setTemperature(temperature);
-    setScale('f');
-  }
+// Button 컴포넌트
+const Button = styled.button`
+  color: grey;
+  border: 2px solid palevioletred;
+`;
 
-  const celsius = scale === 'f' ? tryConvert(temperature, toCelsius) :  temperature;
-  const fahrenheit = scale === 'c' ? tryConvert(temperature, toFahrenheit) :  temperature;
+// Button에 style이 추가된 RoundedButton 컴포넌트
+const RoundedButton = styled(Button)`
+  border-radius:16px;
+`;
 
+function Sample(props) {
   return (
     <div>
-      <TemperatureInput 
-        scale="c"
-        temperature={celsius}
-        onTemperatureChange={handleCelsiusChange}
-      />
-      <TemperatureInput 
-        scale="f"
-        temperature={fahrenheit}
-        onTemperatureChange={handleFahrenheitChange}
-      />
-      <BoilingVerdict 
-        celsius={parseFloat(celsius)}
-      />
+      <Button>Normal</Button>
+      <RoundedButton>Rounded</RoundedButton>
     </div>
   )
 }
